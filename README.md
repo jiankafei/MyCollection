@@ -4,8 +4,19 @@
 
 ## 原创
 
+My 文件夹
+
 cld page ajax clampW cpm EventEmmiter EVT FormVerify jsonp LazyLoad loadBDMap math quicksort Reply sku slide utils verify-temp
+
+## 仿写
+
+Imitate 文件夹
+
+xf: 仿写Koa，目前正在仿写koa-router。
+Promise: 有些地方还没搞明白
 
 ## 第三方
 
-object-fit cssSupport Promise(根据第三方仿写，有些地方还没搞明白)
+Thirdparty 文件夹
+
+object-fit cssSupport
