@@ -1,0 +1,48 @@
+回掉函数：
+	cb = function(ev){
+		console.log(ev);
+	}
+事件名称: type
+
+非IE：
+	let event = new Event(type);
+	el.addEventListener(type, cb, false);
+	el.removeListener(type, cb);
+	el.dispatchEvent(event);
+
+IE9-11：
+	// createEvent 参数为事件类型，包括很多
+	// IE也有Event，但不是构造函数，是一个Event类型的对象
+	var event = document.createEvent('Event');
+	event.initEvent(type, canBubbleArg, cancelableArg);
+	el.addEventListener(type, cb, false);
+	el.removeListener(type, cb);
+	el.dispatchEvent(event);
+
+IE5-8：
+// 创建
+obj[name] = 0;
+// 监听
+obj.attachEvent('onpropertychange', function(ev){
+    if(ev.propertyName === type) callback.call(obj);
+});
+// 触发
+obj[type]++;
+
+
+
+
+
+基本事件类：
+	new Event(type)
+自定义事件类：
+	// 该事件类可以自定义event事件对象
+	new CustomEvent(type, {});
+还有很多：
+	UIEvent
+	MouseEvent
+	MutationEvent
+	TextEvent
+	KeyboardEvent
+	CustomEvent
+	Event

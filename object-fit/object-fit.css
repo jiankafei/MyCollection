@@ -1,0 +1,74 @@
+
+.x-object-fit {
+	position: relative !important;
+	overflow: hidden !important;
+}
+
+.x-object-fit > .x-object-fit-taller,
+.x-object-fit > .x-object-fit-wider {
+	position: absolute !important;
+	left: -100% !important;
+	right: -100% !important;
+	top: -100% !important;
+	bottom: -100% !important;
+	margin: auto !important;
+}
+/* none */
+.x-object-fit-none > .x-object-fit-taller,
+.x-object-fit-none > .x-object-fit-wider {
+	width: auto !important;
+	height: auto !important;
+}
+/* fill */
+.x-object-fit-fill > .x-object-fit-taller,
+.x-object-fit-fill > .x-object-fit-wider {
+	width: 100% !important;
+	height: 100% !important;
+}
+/* contain */
+.x-object-fit-contain > .x-object-fit-taller {
+	width: auto !important;
+	height: 100% !important;
+}
+.x-object-fit-contain > .x-object-fit-wider {
+	width: 100% !important;
+	height: auto !important;
+}
+/* cover */
+.x-object-fit-cover > .x-object-fit-taller,
+.x-object-fit-cover > .x-object-fit-wider {
+	max-width: none !important;
+	max-height: none !important;
+}
+.x-object-fit-cover > .x-object-fit-taller {
+	width: 100% !important;
+	height: auto !important;
+}
+.x-object-fit-cover > .x-object-fit-wider {
+	width: auto !important;
+	height: 100% !important;
+}
+/* position-top */
+.x-object-position-top > .x-object-fit-taller,
+.x-object-position-top > .x-object-fit-wider {
+	top: 0 !important;
+	bottom: auto !important;
+}
+/* position-right */
+.x-object-position-right > .x-object-fit-taller,
+.x-object-position-right > .x-object-fit-wider {
+	left: auto !important;
+	right: 0 !important;
+}
+/* position-bottom */
+.x-object-position-bottom > .x-object-fit-taller,
+.x-object-position-bottom > .x-object-fit-wider {
+	top: auto !important;
+	bottom: 0 !important;
+}
+/* position-left */
+.x-object-position-left > .x-object-fit-taller,
+.x-object-position-left > .x-object-fit-wider {
+	left: 0 !important;
+	right: auto !important;
+}

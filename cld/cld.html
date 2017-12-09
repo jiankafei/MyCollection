@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data</title>
+<link rel="stylesheet" type="text/css" href="cld.css">
+<style type="text/css">
+[class*="cld1"]{border-color: red;}
+[class*="cld2"]{border-color: green;}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="cld_v1.1.js"></script>
+<!-- <script type="text/javascript" src="calendar.js"></script> -->
+</head>
+<body>
+<input type="text" class="ymd">
+<script type="text/javascript">
+$(function(){
+	//日期选择
+	var $cld=$(document.body).cld('ymd');
+});
+</script>
+</body>
+</html>

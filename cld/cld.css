@@ -1,0 +1,65 @@
+ul, ol, dl, li, dt, dd, p, h1, h2, h3, h4, h5, h6{margin:0px; padding:0px;}
+ul,ol,dl,li,dt,dd{list-style:none}
+a{color:#565656; text-decoration:none;}
+input,textarea,select,button{ outline-style:none; margin:0px; padding:0px;cursor: text;background-color: #fff;font-family: 'helvetica neue',tahoma,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif; vertical-align:middle}
+code,kbd,pre,samp {font-family: monaco, menlo, consolas, 'courier new', courier, monospace;}
+button{border: 1px solid transparent;cursor: pointer;background-color: transparent;}
+b,em,i{ font-style:normal;font-weight: normal;}
+/**
+ * 1. 防止元素中「font-family」不能继承
+ * 2. 西文字体和 OS X 字体写在前面
+ * 3. Opera 12.1 之前版本不支持中文字体的英文名称
+ * 4. 微软雅黑「\5FAE\8F6F\96C5\9ED1」,中易宋体「\5B8B\4F53」
+ */
+img {
+    border: 0 none; /* 1 */
+    width: auto\9; /* 2 */
+    height: auto; /* 3 */
+    max-width: 100%; /* 4 */
+    vertical-align: middle;/* 5 */
+    -ms-interpolation-mode: bicubic; /* 6 */
+}
+#cld{display: none;padding: 0 15px;width: 292px;line-height: 1.5;position: absolute;top: 100px;left: 100px;background-color: #F5F5F5;border: 1px solid #ddd;border-top: none;box-shadow: 0 5px 8px -3px rgba(0,0,0,0.3); font-size:14px;font-family: "Microsoft Yahei",arial,\5b8b\4f53,"Helvetica Neue",Helvetica,STHeiTi,sans-serif;}
+#cld header{height: 44px;position: relative;}
+#cld button{height: 24px;float: left;}
+#cld .cld_ym{position: absolute;top: 10px;left: 0;}
+#cld .cld_ym button{border-color: transparent;color: #0dad51;padding: 0;font-weight: bold;font-size: 16px;}
+#cld .cld_ym button:hover{border-color: #ddd;}
+#cld .cld_ct{position: absolute;right: 0;top: 10px;width: 92px;height: 24px;}
+#cld .cld_ct button{width: 24px;border-color: #d4d4d4;position: relative;}
+#cld .cld_ct button:hover{background-color: #fff;}
+#cld .cld_ct button.cld_disable:hover{background-color: inherit;cursor: not-allowed;}
+#cld .cld_ct button+button{margin-left: 10px;}
+#cld .cld_ct .cld_ct_l::after{content: '';border: 6px solid transparent;width: 0;height: 0;border-right-color: #b5b5b5;position: absolute;left: 1px;top: 5px;}
+#cld .cld_ct .cld_ct_m::after{content: '';width: 8px;height: 8px;background-color: #b5b5b5;position: absolute;left: 7px;top: 7px;}
+#cld .cld_ct .cld_ct_r::after{content: '';border: 6px solid transparent;width: 0;height: 0;border-left-color: #b5b5b5;position: absolute;left: 9px;top: 5px;}
+
+
+#cld section{width: 294px;text-align: center;margin-right: -2px;margin-bottom: -2px;}
+#cld li{float: left;}
+#cld li a{display: block;height: 100%;border: 1px solid transparent;box-sizing: border-box;-ms-transition: all 0.1s ease;-moz-transition: all 0.2s ease;-webkit-transition: all 0.2s ease;transition: all 0.2s ease;}
+#cld li a.on{border-color: #0dad51;}
+#cld .cld_year li,#cld .cld_month li,#cld .cld_date li{height: 30px;line-height: 30px;border-right: 2px solid transparent;border-bottom: 2px solid transparent;background-color: #fff;background-clip: padding-box;cursor: pointer;}
+#cld .cld_year{display: none;}
+#cld .cld_year li{width: 96px;}
+#cld .cld_month{display: none;}
+#cld .cld_month li{width: 71.5px;}
+#cld .cld_week li{width: 42px;height: 24px;line-height: 24px;}
+#cld .cld_date li{width: 40px;}
+#cld footer{height: 24px;line-height: 24px;margin: 5px 0;}
+#cld footer p{}
+#cld .cld_year li:hover a,#cld .cld_month li:hover a,#cld .cld_date li:hover a,#cld li.cld_now a{background-color: #0dad51;color: #fff;}
+#cld li.cld_ps{cursor: not-allowed;}
+#cld li.cld_ps a{color: #bbb;cursor: not-allowed;}
+#cld li.cld_ps:hover a{background-color: inherit;color: #bbb;}
+#cld li.cld_wkd{color: #0dad51;}
+.clearfix::after{
+	content: '.';
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+.clearfix{
+	*zoom:1;
+}
