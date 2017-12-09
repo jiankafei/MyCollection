@@ -39,7 +39,7 @@ function map(json){
 		};
 		json.cb && json.cb(createMap);
 	};
-	
+
 	//执行回掉函数
 	head.appendChild(oS);
 };

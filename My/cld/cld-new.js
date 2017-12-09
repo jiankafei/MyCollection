@@ -9,7 +9,7 @@
 /*
 使用：
 var cld = new CLD({
-	
+
 });
 cld.xxx = '';
 
@@ -18,7 +18,7 @@ class:
 Temp:
 	data-mindate: y:m:d:h:s:i
 	data-maxdate: y:m:d:h:s:i
-	data-format: 
+	data-format:
 
 Opts:
 	format
