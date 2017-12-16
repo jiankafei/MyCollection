@@ -1,0 +1,1 @@
+xf: 仿写Koa2，Koa2的request和response模块里的部分由于对某些header头不了解，所以对于不了解的这些部分是直接复制Koa2的源码。目前正在仿写koa-router，是个挑战，目前还没完成，对里面的一些细节还没搞懂。之后会再完成static模块。
