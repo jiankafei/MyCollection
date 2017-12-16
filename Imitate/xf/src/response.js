@@ -147,11 +147,8 @@ const response = module.exports = {
 	},
 	set type(type) {
 		type = getType(type);
-		if (type) {
-			this.setHeader('Content-Type', type);
-		} else {
-			this.removeHeader('Content-Type');
-		}
+		if (type) this.setHeader('Content-Type', type);
+		else this.removeHeader('Content-Type');
 	},
 	vary(field) {
 		vary(this.res, field);

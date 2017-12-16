@@ -6,6 +6,7 @@ const Delegator = require('./delegator');
 const context = module.exports = {
 	// 会在 application 里调用
 	// 会在 response 里调用
+	// 该error函数是Koa2源码的，仿写并没有把重点放在错误处理上
 	onerror(err) {
 		if (null === err) return;
 		if (!(err instanceof Error)) err = new Error(`now-error thrown: ${err}`);
