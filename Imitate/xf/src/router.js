@@ -219,7 +219,7 @@ METHODS.forEach(method => {
 		}
 	})
 });
-// 对路径参数进行统一处理，从而支持多种参数传递
+// 对路径参数进行统一处理，从而支持多种格式参数传递
 function normalizeParam(arg) {
 	const l = arg.length;
 	const pathConfig = {
@@ -228,6 +228,7 @@ function normalizeParam(arg) {
 		cb: null,
 	};
 	switch (l) {
+		// 以{name: , path: , cb: ,}的方式定义路由
 		case 1:
 			if (arg[0] instanceof Object) {
 				if (arg[0].name) arg[0].name = null;
@@ -235,6 +236,7 @@ function normalizeParam(arg) {
 			}
 			else throw new Error('if arguments length is one, it must be a Object, like this {name:,path:,cb:,}');
 			break;
+		// 传统的参数传递方式(path, cb)
 		case 2:
 			if (('string' === typeof arg[0] || arg[0] instanceof Array) && (arg[1] instanceof Function || arg[1] instanceof Array)) {
 				pathConfig = {
@@ -245,6 +247,7 @@ function normalizeParam(arg) {
 			}
 			else throw new Error('param type is wrone');
 			break;
+		// 传统的参数传递方式(name, path, cb)
 		case 3:
 			if ('string' === typeof arg[0] && ('string' === typeof arg[1] || arg[1] instanceof Array) && (arg[2] instanceof Function || arg[2] instanceof Array)) {
 				pathConfig = {
