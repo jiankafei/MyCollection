@@ -4,8 +4,8 @@ function quicksort(arr){
 		pivot = arr.splice(pivotIndex, 1)[0],
 		left = [],
 		right = [];
-	arr.forEach(function(item) {
+	for (let item of arr) {
 		item < pivot ? left.push(item) : right.push(item);
-	});
+	}
 	return quicksort(left).concat(pivot, quicksort(right));
 };

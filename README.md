@@ -12,7 +12,7 @@ cld page ajax clampW cpm EventEmmiter EVT FormVerify jsonp LazyLoad loadBDMap ma
 
 Imitate 文件夹
 
-xf: 仿写Koa，目前正在仿写koa-router。
+xf: 仿写Koa2，Koa2的request和response模块里的部分由于对某些header头不了解，所以对于不了解的这些部分是直接复制Koa2的源码。目前正在仿写koa-router，是个挑战，目前还没完成。
 Promise: 有些地方还没搞明白
 
 ## 第三方
