@@ -21,7 +21,7 @@ const wxPlayDOM = {
 				break;
 				case 3:
 				// 跳过空白文本节点
-				if (!/^\s+$/.test(node.textContent)) {
+				if (/^\S+$/.test(node.textContent)) {
 					vdom = Object.create(null);
 					vdom.type = 'text';
 					vdom.text = node.textContent;
