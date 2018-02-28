@@ -50,7 +50,7 @@ const wxPlayDOM = {
 					node = document.createTextNode(vdom.text);
 					break;
 			}
-			frag.appendChild(node);
+			node && frag.appendChild(node);
 		}
 		return frag;
 	},
