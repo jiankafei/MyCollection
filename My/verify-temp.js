@@ -120,9 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		outed = true;
 	getMsgBtn.addEventListener('touchend', function (event) {
 		event.preventDefault();
-		if (!outed) {
-			return false;
-		}
+		if (!outed) return;
 		outed = false;
 		if (!tel.value || !imgIpt.value) {
 			outed = true;

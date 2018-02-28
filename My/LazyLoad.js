@@ -4,9 +4,11 @@
 	tips:obj,//提示盒子对象,原生
 	scrollObj:obj,//滚动元素对象，原生
 	ajaxOpts:{//ajax参数
-		url:'path',
-		type:'get' || 'post',
-		data:{}
+		url:'path', // 必须
+		type:'get' || 'post', // 非必须
+		data:{ // 必须
+			p: 1,
+		}
 	},
 	status:function(data){},//在这里返回状态,true || false || 'null' ||
 	dataList:function(data){},//在这里返回数据列表
@@ -103,7 +105,6 @@
 				};
 			};
 			ajax(this.ajaxOpts);
-
 		}
 	};
 	//页数增加

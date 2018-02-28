@@ -1,22 +1,32 @@
-function final(status, arg){
-	const that = this;
-	let fn = null;
+function resolve(arg) {
 	if (this.status !== 'pending') return;
-	setTimeout(function(){
-		that.status = status;
-		const queue = that[status === 'resolved' ? 'resolves' : 'rejects'];
+	let fn = null;
+	const queue = this.resolves;
+	
+	setTimeout(() => {
+		if (this.status === 'rejected') return;
 		while (fn = queue.shift()) {
-			arg = fn.call(that, arg) || arg;
+			arg = fn.call(this, arg) || arg;
 		}
-		that.arg = arg;
+		this.arg = arg;
+		this.status = 'resolved';
 	}, 0);
 }
-function resolve(arg) {
-	final.bind(this, 'resolved', arg)();
-}
 function reject(arg) {
-	final.bind(this, 'rejected', arg)();
+	if (this.status !== 'pending') return;
+	let fn = null;
+	const queue = this.rejects;
+	
+	setTimeout(() => {
+		if (this.status === 'resolved') return;
+		while (fn = queue.shift()) {
+			arg = fn.call(this, arg) || arg;
+		}
+		this.arg = arg;
+		this.status = 'rejected';
+	}, 0);
 }
+
 class PromiseA {
 	constructor(fn) {
 		const that = this;
@@ -28,7 +38,8 @@ class PromiseA {
 	}
 	then(done, fail) {
 		const that = this;
-		return new PromiseA((resolve, reject) => {
+		return new PromiseA(function(resolve, reject) {
+			// 成功回掉
 			function doneBack(arg) {
 				let ret = typeof done === 'function' && done(arg) || arg;
 				if (ret && typeof ret['then'] === 'function') {
@@ -41,7 +52,7 @@ class PromiseA {
 					resolve(ret);
 				}
 			};
-
+			// 失败回掉
 			function failBack(err) {
 				err = typeof fail === 'function' && fail(err) || err;
 				reject(err);
@@ -65,19 +76,19 @@ class PromiseA {
 		return this.then(undefined, fail);
 	}
 	static resolve(arg) {
-		new PromiseA(resolve => {
+		new PromiseA(function(resolve) {
 			resolve(arg);
 		});
 	}
 	static reject(arg) {
-		new PromiseA((resolve, reject) => {
+		new PromiseA(function(resolve, reject) {
 			reject(arg);
 		});
 	}
 }
 
 // 示例
-let ts = new PromiseA((resolve, reject) => {
+let ts = new PromiseA(function(resolve, reject) {
 	resolve('成功');
 	reject('失败');
 });
@@ -87,5 +98,3 @@ ts.then(arg => {
 }).catch(err => {
 	console.log(err);
 });
-
-// 这个Promise有问题
