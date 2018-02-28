@@ -4,9 +4,10 @@ const wxPlayDOM = {
 		nodes = Array.from(nodes);
 		const vdoms = [];
 		for (const node of nodes) {
-			const vdom = Object.create(null);
+			let vdom = null;
 			switch (node.nodeType) {
-				case '1':
+				case 1:
+				vdom = Object.create(null);
 				vdom.type = 'node';
 				vdom.name = node.nodeName;
 				vdom.attrs = Object.create(null);
@@ -18,12 +19,16 @@ const wxPlayDOM = {
 				}
 				vdom.children = this.nodeToVdom(node.childNodes);
 				break;
-				case '3':
-				vdom.type = 'text';
-				vdom.text = node.textContent;
+				case 3:
+				// 跳过空白文本节点
+				if (!/^\s+$/.test(node.textContent)) {
+					vdom = Object.create(null);
+					vdom.type = 'text';
+					vdom.text = node.textContent;
+				}
 				break;
 			}
-			vdoms.push(vdom);
+			vdom && vdoms.push(vdom);
 		}
 		return vdoms;
 	},
