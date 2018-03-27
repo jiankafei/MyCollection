@@ -1,8 +1,6 @@
 'use strict';
 
-import QRConst from './QRConst';
-
-const QRMode = QRConst.QRMode;
+import { QRMode } from './QRConst';
 
 class QR8bitByte {
 	constructor(data){

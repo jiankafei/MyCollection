@@ -48,13 +48,11 @@ const qr = new QrCode({
 	2. 自定义绘制下 renderToCanvas() 无法使用；
 	3. 可以使用 clear() 方法清除区域绘制；
 	3. 一般情况下，直接初始化实例时传入参数，使用 renderToCanvas() 调用即可，clear在内部已经调用；
-	4. 二维码的尺寸最好是count的整数倍，在开发时，如果遇到尺寸变化较大的时候，查看count属性并计算出接近预期宽度的真实宽度，建议使用该宽度
+	4. 二维码的尺寸最好是count的整数倍，开发时，遇到尺寸变化较大时，查看count属性并计算出接近预期宽度的真实宽度，建议使用该宽度
  */
 
 import QRCodeModel from './QRCodeModel';
-import QRConst from './QRConst';
-const QRErrorCorrectLevel = QRConst.QRErrorCorrectLevel;
-const QRCodeLimitLength = QRConst.QRCodeLimitLength;
+import { QRErrorCorrectLevel, QRCodeLimitLength } from './QRConst';
 
 const getUTF8Length = function (text) {
 	let replacedText = encodeURI(text).toString().replace(/\%[0-9a-fA-F]{2}/g, 'a');

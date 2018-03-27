@@ -2,10 +2,7 @@
 
 import QRPolynomial from './QRPolynomial';
 import QRMath from './QRMath';
-import QRConst from './QRConst';
-
-const QRMaskPattern = QRConst.QRMaskPattern;
-const QRMode = QRConst.QRMode;
+import { QRMaskPattern, QRMode } from './QRConst';
 
 const QRUtil = {
 	PATTERN_POSITION_TABLE: [

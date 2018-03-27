@@ -66,9 +66,9 @@ const QRMaskPattern = {
 	PATTERN111: 7
 };
 
-export default {
+export {
+	QRCodeLimitLength,
 	QRMode,
 	QRErrorCorrectLevel,
 	QRMaskPattern,
-	QRCodeLimitLength,
 };
