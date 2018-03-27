@@ -111,7 +111,7 @@ class QRCode {
 		this.count = this.getCount(this.text, this.typeNumber, this.correctLevel);
 		this.tile = Math.round(this.size / this.count);
 		this.realSize = this.count * this.tile;
-		console.log(this.size, this.realSize);
+		// console.log(this.size, this.realSize);
 	}
 	// 返回 count
 	getCount(text, typeNumber = -1, correctLevel = 'H'){
