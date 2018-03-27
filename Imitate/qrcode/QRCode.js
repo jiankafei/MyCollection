@@ -1,5 +1,6 @@
 'use strict';
 /**
+ * 容错率
  * L (Low)	~7%
  * M (Medium)	~15%
  * Q (Quartile)	~25%
@@ -18,8 +19,8 @@ const qr = new QrCode({
 	ctx: , // context对象，必填
 });
 属性：
-	qr.width // 二维码宽度
-	qr.totalWidth // 二维码总体宽度，包括边框
+	qr.realSize // 二维码真实大小
+	qr.totalSize // 二维码总体大小，包括边框
 	qr.ctx // canvas的 context 对象
 	qr.typeNumber // 类型值
 方法：
@@ -109,7 +110,8 @@ class QRCode {
 
 		this.count = this.getCount(this.text, this.typeNumber, this.correctLevel);
 		this.tile = Math.round(this.size / this.count);
-		this.width = this.count * this.tile;
+		this.realSize = this.count * this.tile;
+		console.log(this.size, this.realSize);
 	}
 	// 返回 count
 	getCount(text, typeNumber = -1, correctLevel = 'H'){
@@ -126,20 +128,19 @@ class QRCode {
 	}
 	// 绘制
 	renderToCanvas(x = 0, y = 0){
-		if (this.diy) return;
-		const {colorDark, colorLight, count, tile, width, borderWidth, borderColor, ctx} = this;
-		const totalWidth = this.totalWidth =  borderWidth * 2 + width;
-		this.startX = x;
-		this.startY = y;
+		if (this.diy) return; // 如果是自定义绘制则直接返回
+		const {colorDark, colorLight, count, tile, realSize, borderWidth, borderColor, ctx} = this;
+		const totalSize = this.totalSize =  borderWidth * 2 + realSize;
+
 		// 先清后画
-		this.clear(x, y, totalWidth, totalWidth);
+		this.clear(x, y, totalSize, totalSize);
 
 		// 绘制边框
 		ctx.setFillStyle(borderColor);
-		ctx.fillRect(x, y, totalWidth, borderWidth);
-		ctx.fillRect(x + width + borderWidth, y, borderWidth, totalWidth);
-		ctx.fillRect(x, y + width + borderWidth, totalWidth, borderWidth);
-		ctx.fillRect(x, y, borderWidth, totalWidth);
+		ctx.fillRect(x, y, totalSize, borderWidth);
+		ctx.fillRect(x + realSize + borderWidth, y, borderWidth, totalSize);
+		ctx.fillRect(x, y + realSize + borderWidth, totalSize, borderWidth);
+		ctx.fillRect(x, y, borderWidth, totalSize);
 
 		// 绘制二维码
 		for (let row = 0; row < count; row++) {
