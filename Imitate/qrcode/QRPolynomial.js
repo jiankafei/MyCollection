@@ -44,6 +44,6 @@ class QRPolynomial {
 		}
 		return new QRPolynomial(num, 0).mod(e);
 	}
-}
+};
 
 export default QRPolynomial;

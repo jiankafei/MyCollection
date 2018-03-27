@@ -290,7 +290,7 @@ class QRCodeModel {
 			}
 		}
 	}
-}
+};
 
 QRCodeModel.PAD0 = 0xEC;
 QRCodeModel.PAD1 = 0x11;

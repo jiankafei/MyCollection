@@ -28,6 +28,6 @@ class QRBitBuffer {
 		}
 		this.length++;
 	}
-}
+};
 
 export default QRBitBuffer;

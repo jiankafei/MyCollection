@@ -48,6 +48,6 @@ class QR8bitByte {
 			buffer.put(data, 8);
 		}
 	}
-}
+};
 
 export default QR8bitByte;

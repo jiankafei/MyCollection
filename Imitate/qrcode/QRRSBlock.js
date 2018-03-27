@@ -38,7 +38,8 @@ class QRRSBlock {
 				return undefined;
 		}
 	}
-}
+};
+
 QRRSBlock.RS_BLOCK_TABLE = [
 	[1, 26, 19],
 	[1, 26, 16],
