@@ -177,8 +177,8 @@ class QRCode {
 			for (let col = 0; col < count; col++) {
 				const isDark = this.isDark(row, col);
 				const tileX = x + borderWidth + col * tile;
-        		const tileY = y + borderWidth + row * tile;
-				ctx.fillStyle = isDark ? colorDark : colorLight;
+				const tileY = y + borderWidth + row * tile;
+				ctx.setFillStyle(isDark ? colorDark : colorLight);
 				ctx.fillRect(tileX, tileY, tile, tile);
 			}
 		}
