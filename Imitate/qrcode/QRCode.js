@@ -181,8 +181,8 @@ class QRCode {
 				let tileW = tile;
 				let tileH = tile;
 				if (this.dealTile === 'original') {
-					tileX = Math.round(col * tile);
-					tileY = Math.round(row * tile);
+					tileX = x + borderWidth + Math.round(col * tile);
+					tileY = y + borderWidth + Math.round(row * tile);
 					tileW = (Math.ceil((col + 1) * tile) - Math.floor(col * tile));
 					tileH = (Math.ceil((row + 1) * tile) - Math.floor(row * tile));
 				}
