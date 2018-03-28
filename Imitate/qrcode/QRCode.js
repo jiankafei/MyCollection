@@ -22,7 +22,7 @@ const qr = new QrCode({
 	colorLight: '#ffffff', // 背景颜色，默认白色
 	borderWidth: 0, // 边框宽度，int
 	borderColor: '#ffffff', // 边框颜色
-	dealTile: 'round', // 如何处理二维码栅格的大小[floor, round, ceil, original] 默认round
+	dealTile: 'original', // 如何处理二维码栅格的大小[floor, round, ceil, original] 默认original
 	logo: '', // logo图像
 	logoSize: compute, // logo 大小，如果logo大小超过内部计算的容错，则使用内部的容错大小，默认内部计算，无法识别则自行修改
 	logoRadius: '50%', // logo圆角大小，数字或百分比，最大数字为logoSize的一半，，百分比最大50%，超过自动取半，默认50%
@@ -119,7 +119,7 @@ class QRCode {
 			borderWidth: 0,
 			borderColor: '#ffffff',
 			logoRadius: '50%',
-			dealTile: 'round',
+			dealTile: 'original',
 		}, options);
 
 		this.borderWidth = ~~this.borderWidth;
@@ -176,10 +176,18 @@ class QRCode {
 		for (let row = 0; row < count; row++) {
 			for (let col = 0; col < count; col++) {
 				const isDark = this.isDark(row, col);
-				const tileX = x + borderWidth + col * tile;
-				const tileY = y + borderWidth + row * tile;
+				let tileX = x + borderWidth + col * tile;
+				let tileY = y + borderWidth + row * tile;
+				let tileW = tile;
+				let tileH = tile;
+				if (this.dealTile === 'original') {
+					tileX = Math.round(col * tile);
+					tileY = Math.round(row * tile);
+					tileW = (Math.ceil((col + 1) * tile) - Math.floor(col * tile));
+					tileH = (Math.ceil((row + 1) * tile) - Math.floor(row * tile));
+				}
 				ctx.setFillStyle(isDark ? colorDark : colorLight);
-				ctx.fillRect(tileX, tileY, tile, tile);
+				ctx.fillRect(tileX, tileY, tileW, tileH);
 			}
 		}
 		// 绘制logo
