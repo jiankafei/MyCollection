@@ -220,32 +220,15 @@ class QRCode {
 	drawRoundRect(x, y, w, h, r = 0) {
 		const { ctx } = this;
 		const trans = (r, size) => (/%$/.test(r + '') ? size * parseFloat(r) * .01 : r);
-		let tl, tr, br, bl;
-		if (r instanceof Array) {
-			const wr0 = trans(r[0], w);
-			const hr0 = trans(r[0], h);
-			const wr1 = trans(r[1], w);
-			const hr1 = trans(r[1], h);
-			const wr2 = trans(r[2], w);
-			const hr2 = trans(r[2], h);
-			const wr3 = trans(r[3], w);
-			const hr3 = trans(r[3], h);
-
-			tl = w < 2 * wr0 ? w * .5 : h < 2 * hr0 ? h * .5 : w < h ? wr0 : hr0; // 上左
-			tr = w < 2 * wr1 ? w * .5 : h < 2 * hr1 ? h * .5 : w < h ? wr1 : hr1; // 上右
-			br = w < 2 * wr2 ? w * .5 : h < 2 * hr2 ? h * .5 : w < h ? wr2 : hr2; // 下右
-			bl = w < 2 * wr3 ? w * .5 : h < 2 * hr3 ? h * .5 : w < h ? wr3 : hr3; // 下左
-		} else {
-			const wr = trans(r, w);
-			const hr = trans(r, h);
-			tl = tr = br = bl = w < 2 * wr ? w * .5 : h < 2 * hr ? h * .5 : w < h ? wr : hr;
-		}
+		const wr = trans(r, w);
+		const hr = trans(r, h);
+		r = w < 2 * wr ? w * .5 : h < 2 * hr ? h * .5 : w < h ? wr : hr;
 		ctx.beginPath();
-		ctx.moveTo(x + tl, y);
-		ctx.arcTo(x + w, y, x + w, y + h, tr);
-		ctx.arcTo(x + w, y + h, x, y + h, br);
-		ctx.arcTo(x, y + h, x, y, bl);
-		ctx.arcTo(x, y, x + w, y, tl);
+		ctx.moveTo(x + r, y);
+		ctx.arcTo(x + w, y, x + w, y + h, r);
+		ctx.arcTo(x + w, y + h, x, y + h, r);
+		ctx.arcTo(x, y + h, x, y, r);
+		ctx.arcTo(x, y, x + w, y, r);
 		ctx.closePath();
 	}
 	// 清除
