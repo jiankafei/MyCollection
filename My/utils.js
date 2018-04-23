@@ -132,7 +132,7 @@ const Str = {
 		var tmp = str.match(/[\u4e00-\u9fa5]/g) || [];
 		return str.length + ((len || 2) - 1) * tmp.length;
 	},
-	// 这里的maxlen是最大字节数，干函数用于按最大字节数截取字符串
+	// 这里的maxlen是最大字节数，该函数用于按最大字节数截取字符串
 	getMaxlen: function (str, maxlen) {
 		var sResult = '',
 			L = 0,

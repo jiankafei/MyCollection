@@ -11,10 +11,10 @@
  * count = (n-1) * 4 + 21 // 计算矩阵个数
  *
  * 前景背景色：
- * QR码扫描仪是通过红色光的照明捕捉QR码的，因此如果是背景反射红色、打印的颜色为吸收红色的组合，就可以读取
+ * QR码是通过红色光的照明捕捉QR码的，因此如果是背景反射红色、打印颜色吸收红色的组合，就可以读取
  */
 /**
-const qr = new QR({
+const qr = new QRCode({
 	size: 256, // 二维码大小，默认256，size是期望宽度，真实宽度以实例属性width为准
 	typeNumber: -1, // 二维码的计算模式，[1, 40] 默认-1为自动检测
 	correctLevel: 'H', // 二维码纠错级别 [L, M, Q, H] 默认H
@@ -25,7 +25,7 @@ const qr = new QR({
 	dealTile: 'original', // 如何处理二维码栅格的大小[floor, round, ceil, original] 默认original
 	logo: '', // logo图像
 	logoSize: compute, // logo 大小，如果logo大小超过内部计算的容错，则使用内部的容错大小，默认内部计算，无法识别则自行修改
-	logoRadius: '50%', // logo圆角大小，数字或百分比，最大数字为logoSize的一半，，百分比最大50%，超过自动取半，默认50%
+	logoRadius: '50%', // logo圆角大小，数字或百分比，最大数字为logoSize的一半，百分比最大50%，超过自动取半，默认50%
 	text: '', // 文本信息，必填
 	ctx: , // context对象，必填
 });
@@ -51,27 +51,9 @@ const qr = new QR({
 	4. 二维码的尺寸最好是count的整数倍，开发时，遇到尺寸变化较大时，查看count属性并计算出接近预期宽度的真实宽度，建议使用该宽度
  */
 
-import {QRCode as QRCodeModel, QRErrorCorrectLevel} from './qrcode';
+import { QRCodeModel, QRErrorCorrectLevel } from './qrcode';
 
-const utf16to8 = str => {
-    let out = '', l = str.length, c, i;
-    for(i = 0; i < l; i++) {
-		c = str.charCodeAt(i);
-		if (c >= 0x0001 && c <= 0x007F) {
-			out += str.charAt(i);
-		} else if (c > 0x07FF) {
-			out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-			out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-			out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-		} else {
-			out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-			out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-		}
-    }
-    return out;
-};
-
-class QR {
+class QRCode {
 	constructor(options) {
 		this.diy = false;
 		if (!options) {
@@ -120,8 +102,9 @@ class QR {
 	getCount(text, typeNumber = -1, correctLevel = 'H'){
 		correctLevel = QRErrorCorrectLevel[correctLevel];
 		const _QRCodeModel = this._QRCodeModel = new QRCodeModel(typeNumber, correctLevel);
-		_QRCodeModel.addData(utf16to8(text));
+		_QRCodeModel.addData(text);
 		_QRCodeModel.make();
+		this.typeNumber = _QRCodeModel.typeNumber;
 		return _QRCodeModel.getModuleCount();
 	};
 	// 判断是否是dark色块
@@ -211,4 +194,4 @@ class QR {
 	};
 };
 
-export default QR;
+export default QRCode;
